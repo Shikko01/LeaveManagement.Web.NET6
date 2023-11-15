@@ -1,6 +1,6 @@
 ﻿namespace LeaveManagement.Web.NET6.Data
 {
-    // For the concept of DRY
+    // For the concept of DRY (Don`t Repeat Yourself)
     public abstract class BaseEntity
     {
         public int Id { get; set; }
