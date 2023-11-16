@@ -1,12 +1,11 @@
-﻿@model LeaveManagement.Web.NET6.Data.LeaveType
+﻿@model LeaveManagement.Web.NET6.Models.LeaveTypeVM
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create Leave Type</h1>
 
-<h4>LeaveType</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,24 +21,11 @@
                 <input asp-for="DefaultDays" class="form-control" />
                 <span asp-validation-for="DefaultDays" class="text-danger"></span>
             </div>
+            <br/>
             <div class="form-group">
-                <label asp-for="DateCreated" class="control-label"></label>
-                <input asp-for="DateCreated" class="form-control" />
-                <span asp-validation-for="DateCreated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateModified" class="control-label"></label>
-                <input asp-for="DateModified" class="form-control" />
-                <span asp-validation-for="DateModified" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" /> &nbsp;
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
