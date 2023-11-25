@@ -4,10 +4,19 @@
     ViewData["Title"] = "ViewAllocations";
 }
 
-<h1>View Allocations for @Model.FirstName @Model.LastName</h1>
+<style>
+    #header{
+        text-align: center;
+    }
+    #underHeader{
+        text-align: center;
+    }
+</style>
+
+<h1 id="header">View Allocations for @Model.FirstName @Model.LastName</h1>
 
 <div>
-    <h4>EmployeeAllocationVM</h4>
+    <h4 id="underHeader">EmployeeAllocationVM</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -39,25 +48,41 @@
 <hr />
 <div class="card">
   <div class="card-header">
-      <h4>Leave Allocations</h4>
+      <h4 style= "text-align: center">Leave Allocations</h4>
   </div>
   <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+          <div class="row">
+              <div class="col">Leave Name</div>
+              <div class="col">Original Allocation</div>
+              <div class="col">Current Allocation</div>
+              <div class="col">Action</div>
+          </div>
+      </li>
         @foreach(var allocation in Model.LeaveAllocations)
         {
             <li class="list-group-item">
-                <h6>@allocation.LeaveType.Name 
-                    <button type="button" class="btn btn-primary">
+               <div class="row">
+                   <div class="col"><h6>@allocation.LeaveType.Name</h6></div>
+                   <div class="col">
+                       <button type="button" class="btn btn-primary">
                         Allocated days <span class="badge text-bg-secondary">@allocation.LeaveType.DefaultDays</span>
-                    </button>
-                    <button type="button" class="btn btn-primary">
+                        </button>
+                   </div>
+                   <div class="col">
+                       <button type="button" class="btn btn-primary">
                         Remaining days <span class="badge text-bg-secondary">@allocation.NumberOfDays</span>
-                    </button>
-                </h6>
+                       </button>
+                   </div>
+                   <div class="col">
+                       <a asp-action="EditAllocation" asp-route-id="@allocation.Id" class="btn btn-warning">Edit Allocation<i class="fas fa-pencil-alt"></i></a> 
+                   </div>
+               </div>
             </li>
         }
   </ul>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <br />
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
