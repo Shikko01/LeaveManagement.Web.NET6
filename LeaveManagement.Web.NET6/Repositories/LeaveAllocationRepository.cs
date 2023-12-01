@@ -34,6 +34,7 @@ namespace LeaveManagement.Web.NET6.Repositories
             var allocation = await _context.LeaveAllocations
                 .Include(q => q.LeaveType) // Basically INNER JOIN to other table
                 .Where(q => q.EmployeeId == employeeId).ToListAsync();
+
             var employee = await _userManager.FindByIdAsync(employeeId);
 
             var employeeAllocationModel = _mapper.Map<EmployeeAllocationVM>(employee);
@@ -97,6 +98,11 @@ namespace LeaveManagement.Web.NET6.Repositories
             await UpdateAsync(leaveAllocation);
 
             return true;
+        }
+
+        public async Task<LeaveAllocation?> GetEmployeeAllocation(string employeeId, int leaveTypeId)
+        {
+            return await _context.LeaveAllocations.FirstOrDefaultAsync(q => q.EmployeeId == employeeId && q.LeaveTypeId == leaveTypeId);
         }
     }
 }
