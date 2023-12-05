@@ -55,7 +55,10 @@ namespace LeaveManagement.Web.NET6.Repositories
 
         public Task UpdateAsync(T entity)
         {
-            _context.Update(entity);
+            //_context.Update(entity);
+
+            _context.Entry(entity).State = EntityState.Modified;
+
             return _context.SaveChangesAsync();
         }
     }
