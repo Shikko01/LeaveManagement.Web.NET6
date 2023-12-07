@@ -1,12 +1,13 @@
-using LeaveManagement.Web.NET6.Configurations;
-using LeaveManagement.Web.NET6.Contracts;
-using LeaveManagement.Web.NET6.Data;
+using LeaveManagement.Application.Configurations;
+using LeaveManagement.Application.Contracts;
+using LeaveManagement.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Build.Execution;
 using Microsoft.EntityFrameworkCore;
-using LeaveManagement.Web.NET6.Repositories;
+using LeaveManagement.Application.Repositories;
 using Microsoft.Build.Framework;
 using Serilog;
+using LeaveManagement.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
