@@ -6,6 +6,7 @@ using Microsoft.Build.Execution;
 using Microsoft.EntityFrameworkCore;
 using LeaveManagement.Web.NET6.Repositories;
 using Microsoft.Build.Framework;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,9 +29,13 @@ builder.Services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
+builder.Host.UseSerilog((context, loggerConfiguration) => loggerConfiguration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

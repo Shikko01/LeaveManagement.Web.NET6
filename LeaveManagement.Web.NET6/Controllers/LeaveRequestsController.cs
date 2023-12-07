@@ -20,12 +20,15 @@ namespace LeaveManagement.Web.NET6.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
         private readonly ILeaveRequestRepository _leaveRequestRepository;
+        private readonly ILogger<LeaveRequestsController> _logger;
 
-        public LeaveRequestsController(ApplicationDbContext context, IMapper mapper, ILeaveRequestRepository leaveRequestRepository)
+        public LeaveRequestsController(ApplicationDbContext context, IMapper mapper, ILeaveRequestRepository leaveRequestRepository,
+            ILogger<LeaveRequestsController> logger)
         {
             _context = context;
             _mapper = mapper;
             _leaveRequestRepository = leaveRequestRepository;
+            _logger = logger;
         }
 
         // GET: LeaveRequests
@@ -64,6 +67,7 @@ namespace LeaveManagement.Web.NET6.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError(ex, "Error Aproving Leave Request.");
                 throw;
             }
 
@@ -78,6 +82,7 @@ namespace LeaveManagement.Web.NET6.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error CancelLing Leave Request.");
                 throw;
             }
 
@@ -112,6 +117,7 @@ namespace LeaveManagement.Web.NET6.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error Creating Leave Request.");
                 ModelState.AddModelError(string.Empty, "An error has occurred. Please, try again later!");
             }
 
